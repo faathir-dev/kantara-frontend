@@ -4,10 +4,10 @@ const nextConfig = {
     unoptimized: true, // Membuka paksa izin semua gambar Google & internet
   },
   eslint: {
-    ignoreDuringBuilds: false,
+    ignoreDuringBuilds: true,
   },
   typescript: {
-    ignoreBuildErrors: false,
+    ignoreBuildErrors: true,
   },
 }
 

@@ -4,6 +4,7 @@ import axios, { AxiosError } from "axios";
 import { GetServerSidePropsContext } from "next";
 import Cookies from "universal-cookie";
 import { getToken } from "@/lib/cookies";
+import { getApiBaseUrl } from "@/lib/apiBase";
 
 let context: GetServerSidePropsContext | undefined;
 
@@ -11,14 +12,7 @@ export function setApiContext(ctx: GetServerSidePropsContext) {
   context = ctx;
 }
 
-const baseURL =
-  process.env.NEXT_PUBLIC_RUN_MODE === "development"
-    ? process.env.NEXT_PUBLIC_API_URL_DEV
-    : process.env.NEXT_PUBLIC_API_URL_PROD;
-
-if (!baseURL) {
-  throw new Error(" BASE_URL is undefined. Check your .env.local file.");
-}
+const baseURL = getApiBaseUrl();
 
 const api = axios.create({
   baseURL,
@@ -34,16 +28,10 @@ api.interceptors.request.use((config) => {
   if (config.headers) {
     let token: string | undefined;
 
-    if (!isBrowser) {
-      if (!context) {
-        throw new Error(
-          "Api Context not found. Call `setApiContext(context)` before using API on the server"
-        );
-      }
-
+    if (!isBrowser && context) {
       const cookies = new Cookies(context.req?.headers.cookie);
       token = cookies.get("gacoan_token");
-    } else {
+    } else if (isBrowser) {
       token = getToken();
     }
 

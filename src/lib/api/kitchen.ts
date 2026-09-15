@@ -1,9 +1,9 @@
 import { Menu } from '@/types/menu/menu';
 import { QueueData, QueueDataWaiter } from '@/types/Order';
 import { getAuthHeader } from '@/lib/auth/getAuthHeader';
+import { getApiBaseUrl } from '@/lib/apiBase';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL_DEV;
-console.log('BASE_URL ENV:', API_BASE_URL);
+const API_BASE_URL = getApiBaseUrl();
 
 export const kitchenApi = {
   async getAllMenu(): Promise<Menu[]> {
