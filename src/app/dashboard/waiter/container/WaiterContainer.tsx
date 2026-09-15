@@ -25,7 +25,7 @@ const WaiterContainer: React.FC = () => {
     try {
       await startDelivering(queueCode);
       fetchOrders();
-    } catch (err) {
+    } catch {
       setError("Gagal memulai pengantaran.");
     }
   };

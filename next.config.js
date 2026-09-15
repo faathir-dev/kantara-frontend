@@ -4,10 +4,10 @@ const nextConfig = {
     unoptimized: true, // Membuka paksa izin semua gambar Google & internet
   },
   eslint: {
-    ignoreDuringBuilds: true, // Melewati error ESLint saat build di Vercel
+    ignoreDuringBuilds: false,
   },
   typescript: {
-    ignoreBuildErrors: true, // Melewati error TypeScript saat build di Vercel
+    ignoreBuildErrors: false,
   },
 }
 

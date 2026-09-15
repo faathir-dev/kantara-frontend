@@ -58,7 +58,10 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error: AxiosError) => {
-    const data: any = error.response?.data ?? {};
+    const data = (error.response?.data ?? {}) as {
+      error?: string;
+      message?: string;
+    };
     const backendMessage =
       data.error || data.message || error.message || "Unknown error occurred";
 

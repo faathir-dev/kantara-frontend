@@ -3,20 +3,19 @@ import { Loader2, LucideIcon } from "lucide-react";
 import clsxm from "@/lib/clsxm";
 
 
-const IconButtonVariant = [
-  "blue",
-  "green",
-  "yellow",
-  "red",
-  "outline",
-  "ghost",
-] as const;
-const IconButtonSize = ["xs", "sm", "base", "lg"] as const;
+type IconButtonVariant =
+  | "blue"
+  | "green"
+  | "yellow"
+  | "red"
+  | "outline"
+  | "ghost";
+type IconButtonSize = "xs" | "sm" | "base" | "lg";
 
 type IconButtonProps = {
   isLoading?: boolean;
-  variant?: (typeof IconButtonVariant)[number];
-  size?: (typeof IconButtonSize)[number];
+  variant?: IconButtonVariant;
+  size?: IconButtonSize;
   icon?: LucideIcon;
   iconClassName?: string;
 } & React.ComponentPropsWithRef<"button">;
@@ -137,5 +136,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     );
   },
 );
+
+IconButton.displayName = "IconButton";
 
 export default IconButton;

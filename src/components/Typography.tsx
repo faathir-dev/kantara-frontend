@@ -12,27 +12,24 @@ export enum TypographyVariant {
   p,
 }
 
-enum FontVariant {
-  Inter,
-}
+type FontVariant = "Inter";
 
-enum FontWeight {
-  thin,
-  extralight,
-  light,
-  regular,
-  medium,
-  semibold,
-  bold,
-  extrabold,
-  black,
-}
+type FontWeight =
+  | "thin"
+  | "extralight"
+  | "light"
+  | "regular"
+  | "medium"
+  | "semibold"
+  | "bold"
+  | "extrabold"
+  | "black";
 
 type TypographyProps<T extends React.ElementType> = {
   as?: T;
   className?: string;
-  weight?: keyof typeof FontWeight;
-  font?: keyof typeof FontVariant;
+  weight?: FontWeight;
+  font?: FontVariant;
   variant?: keyof typeof TypographyVariant;
   children: React.ReactNode;
 };

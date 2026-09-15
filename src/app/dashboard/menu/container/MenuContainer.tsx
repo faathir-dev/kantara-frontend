@@ -11,7 +11,7 @@ const MenuContainer = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
 
   const { data: categories = [] } = useGetAllCategories();
-  const { data: menuItems = [], isLoading } = useGetAllMenus(selectedCategoryId ?? undefined);
+  const { data: menuItems = [] } = useGetAllMenus(selectedCategoryId ?? undefined);
   const { toggleMenuAvailability, loading } = useKitchen();
 
   return (

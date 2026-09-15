@@ -4,7 +4,6 @@ import Link from "next/link";
 
 type Props = {
   orders: CartItem[];
-  methods: any;
   onIncrement: (id: number | string) => void;
   onDecrement: (id: number | string) => void;
   onDelete: (id: number | string) => void;
@@ -12,7 +11,6 @@ type Props = {
 
 export default function OrderList({
   orders,
-  methods,
   onIncrement,
   onDecrement,
   onDelete,
@@ -35,7 +33,6 @@ export default function OrderList({
         <div key={order.id} className="flex flex-col gap-4">
           <OrderItem
             order={order}
-            methods={methods}
             onIncrement={onIncrement}
             onDecrement={onDecrement}
             onDelete={onDelete}

@@ -38,7 +38,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         <button
           onClick={() => router.push('/dashboard/waiter')}
           className={`w-[415.3px] h-full flex items-center justify-center font-semibold border-b-4 ${
-            isOrderActive ? 'text-tomato bg-white border-tomato' : 'text-black bg-white border-transparent'
+            isWaiterActive ? 'text-tomato bg-white border-tomato' : 'text-black bg-white border-transparent'
           }`}
         >
           Waiter

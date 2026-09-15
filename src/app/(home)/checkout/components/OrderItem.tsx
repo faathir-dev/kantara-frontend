@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { Minus, Plus, X } from "lucide-react";
 import Image from "next/image";
 import { CartItem } from "@/context/CartContext";
 
 type Props = {
   order: CartItem;
-  methods: any;
   onIncrement: (id: number | string) => void;
   onDecrement: (id: number | string) => void;
   onDelete: (id: number | string) => void;
@@ -13,12 +11,10 @@ type Props = {
 
 export default function OrderItem({
   order,
-  methods,
   onIncrement,
   onDecrement,
   onDelete,
 }: Props) {
-
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-start gap-4">

@@ -36,7 +36,7 @@ export type TransactionData = {
   id: string;
   queue_code: string;
   estimate_time: string;
-  orders: MenuItem[];
+  orders: OrderItem[];
   total_price: string;
   table: {
     id: string;

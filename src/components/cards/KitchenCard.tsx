@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { KitchenOrder } from '@/types/Order';
-import { ArrowRightIcon, ClockIcon } from 'lucide-react';
+import { ClockIcon } from 'lucide-react';
 import OrderActionButton from '@/components/buttons/OrderActionButton';
 
 interface OrderCardProps {
@@ -16,7 +16,6 @@ const OrderCard: React.FC<OrderCardProps> = ({
   order,
   orderNumber,
   onUpdateStatus,
-  onRemoveOrder,
 }) => {
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
   const [pendingAction, setPendingAction] = useState<'cooking' | 'ready' | null>(null);
@@ -44,8 +43,6 @@ const OrderCard: React.FC<OrderCardProps> = ({
     setPendingAction(newStatus);
     onUpdateStatus(queueCode, newStatus);
   };
-
-  const items = Array.isArray(order?.data?.orders) ? order.data.orders : [];
 
   if (!order?.data?.queue_code) {
   console.warn('❌ Invalid order data:', order);

@@ -14,8 +14,8 @@ export const useWaiter = () => {
 
       const data = await kitchenApi.getReadyToServeList();
       setOrders(data);
-    } catch (err: any) {
-      setError(err.message || 'Gagal mengambil daftar pesanan.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Gagal mengambil daftar pesanan.');
     } finally {
       setLoading(false);
     }
@@ -27,8 +27,8 @@ export const useWaiter = () => {
       await kitchenApi.finishServing(queueCode);
 
       setOrders(prev => prev.filter(order => order.queue_code !== queueCode));
-    } catch (err: any) {
-      setError(err.message || 'Gagal memperbarui status pesanan.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Gagal memperbarui status pesanan.');
     } finally {
       setLoading(false);
     }
@@ -38,8 +38,8 @@ export const useWaiter = () => {
     try {
       setLoading(true);
       await kitchenApi.startDelivering(queueCode);
-    } catch (err: any) {
-      setError(err.message || 'Gagal memulai pengantaran.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Gagal memulai pengantaran.');
     } finally {
       setLoading(false);
     }

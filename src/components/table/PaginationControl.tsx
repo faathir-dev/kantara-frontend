@@ -31,7 +31,6 @@ type PaginationControlProps<T extends RowData> = {
 
 export default function PaginationControl<T extends RowData>({
   className,
-  data,
   table,
   setParams,
   apiIntegration = { enabled: false },

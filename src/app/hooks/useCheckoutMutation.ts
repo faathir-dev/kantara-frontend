@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import { CheckoutRequest, OrderResponse } from "@/types/checkout/order";
 import api from "@/lib/api";
 import toast from "react-hot-toast";
@@ -16,8 +17,8 @@ export function useCheckoutMutation() {
       toast.success("Pesanan berhasil dibuat!");
       clearCart();
     },
-    onError: (error: any) => {
-      toast.error(error?.response?.data?.error || "Gagal membuat pesanan!");
+    onError: (error: AxiosError<{ error?: string }>) => {
+      toast.error(error.response?.data?.error || "Gagal membuat pesanan!");
     },
   });
 }

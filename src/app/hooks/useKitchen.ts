@@ -19,7 +19,7 @@ export const useKitchen = () => {
   } = useGetAllMenus();
 
   const [kitchen, setKitchen] = useState<KitchenItem[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const [internalError, setInternalError] = useState<string | null>(null);
 
   const fetchKitchen = useCallback(async () => {

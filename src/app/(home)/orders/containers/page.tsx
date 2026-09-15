@@ -15,7 +15,7 @@ import {
 import Link from "next/link";
 import withAuth from "@/components/hoc/withAuth";
 import api from "@/lib/api";
-import { TransactionData } from "@/types/checkout/order";
+import { OrderItem, TransactionData } from "@/types/checkout/order";
 import formatDuration from "@/app/utils/durationUtils";
 import PaginationControl from "@/components/table/PaginationControl";
 
@@ -28,32 +28,29 @@ function OrderHistoryContainer() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const [paymentStatus, setPaymentStatus] = useState<string>("pending");
-  const [orderStatus, setOrderStatus] = useState<string>("");
-
   const [pagination, setPagination] = useState({
     page: 1,
     per_page: 10,
     max_page: 1,
   });
+  const { page, per_page } = pagination;
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
         setIsLoading(true);
-        const { page, per_page } = pagination;
         const res = await api.get(`/transaction/?page=${page}&per_page=${per_page}`);
 
         if (res.data.status) {
           setOrders(res.data.data);
           setPagination((prev) => ({
             ...prev,
-            totalPages: res.data.meta?.max_page ?? 1,
+            max_page: res.data.meta?.max_page ?? 1,
           }));
         } else {
           setError("Gagal memuat pesanan");
         }
-      } catch (err) {
+      } catch {
         setError("Terjadi kesalahan saat mengambil data");
       } finally {
         setIsLoading(false);
@@ -61,7 +58,7 @@ function OrderHistoryContainer() {
     };
 
     fetchOrders();
-  }, [pagination.page, paymentStatus, orderStatus]);
+  }, [page, per_page]);
 
   const handleViewOrder = (orderId: string) => {
     router.push(`/orders/${orderId}`);
@@ -133,7 +130,7 @@ function OrderHistoryContainer() {
                     </div>
 
                     <div className="flex flex-col text-gray-500 gap-1">
-                      {order.orders.slice(0, 3).map((item: any, idx: number) => (
+                      {order.orders.slice(0, 3).map((item: OrderItem, idx: number) => (
                         <span key={idx}>{item.menu.name}</span>
                       ))}
 
@@ -160,7 +157,6 @@ function OrderHistoryContainer() {
             {pagination.max_page > 1 && (
               <PaginationControl
                 data={orders}
-                table={{} as any}
                 setParams={setPagination}
                 apiIntegration={{
                   enabled: true,

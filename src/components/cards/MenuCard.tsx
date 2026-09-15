@@ -36,7 +36,7 @@ const MenuCard: React.FC<MenuCardProps> = ({ item, onToggleAvailability }) => {
           <div className="text-sm overflow-y-auto max-h-[60px]">{item.description}</div>
           <div className="text-sm text-gray">Rp {item.price}</div>
           <button
-            onClick={() => onToggleAvailability(item.id, !item.is_available)}
+            onClick={handleToggle}
             className={`w-full rounded h-6 flex items-center justify-center px-[22px] text-sm font-poppins font-semibold text-whitesmoke-100 ${item.is_available ? 'bg-mediumspringgreen' : 'bg-crimson'}`}
           >
             {item.is_available ? 'Item Available' : 'Item Unavailable'}

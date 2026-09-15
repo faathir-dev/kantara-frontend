@@ -6,20 +6,19 @@ import UnstyledLink, {
 } from "@/components/links/UnstyledLink";
 import clsxm from "@/lib/clsxm";
 
-const ButtonLinkVariant = [
-  "blue",
-  "primary",
-  "green",
-  "yellow",
-  "red",
-  "outline",
-  "ghost",
-] as const;
-const ButtonLinkSize = ["sm", "base", "lg"] as const;
+type ButtonLinkVariant =
+  | "blue"
+  | "primary"
+  | "green"
+  | "yellow"
+  | "red"
+  | "outline"
+  | "ghost";
+type ButtonLinkSize = "sm" | "base" | "lg";
 
 type ButtonLinkProps = {
-  variant?: (typeof ButtonLinkVariant)[number];
-  size?: (typeof ButtonLinkSize)[number];
+  variant?: ButtonLinkVariant;
+  size?: ButtonLinkSize;
   leftIcon?: LucideIcon;
   rightIcon?: LucideIcon;
   leftIconClassName?: string;
@@ -158,5 +157,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
     );
   },
 );
+
+ButtonLink.displayName = "ButtonLink";
 
 export default ButtonLink;

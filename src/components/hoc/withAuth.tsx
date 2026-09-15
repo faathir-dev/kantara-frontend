@@ -90,7 +90,9 @@ export default function withAuth<T>(
     const checkAuth = React.useCallback(() => {
       const token = getToken();
       if (!token) {
-        isAuthenticated && logout();
+        if (isAuthenticated) {
+          logout();
+        }
         stopLoading();
         return;
       }
@@ -109,7 +111,7 @@ export default function withAuth<T>(
               ...res.data.data,
               token,
             });
-          } catch (err) {
+          } catch {
             await removeToken();
           } finally {
             stopLoading();
@@ -131,7 +133,7 @@ export default function withAuth<T>(
       return () => {
         window.removeEventListener("focus", checkAuth);
       };
-    }, [checkAuth]);
+    }, [checkAuth, isLoading, user]);
 
     React.useEffect(() => {
       const handleRedirect = () => {
@@ -208,7 +210,7 @@ const getMeEndpoint = (token: string): string => {
     if (payload && payload.role === "waiter") {
       return "/waiter/me";
     }
-  } catch (e) {
+  } catch {
     // If token parsing fails, we'll use the default endpoint
   }
 

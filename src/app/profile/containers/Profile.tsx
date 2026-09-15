@@ -13,7 +13,7 @@ import withAuth from "@/components/hoc/withAuth";
 export default withAuth(ProfileContainer, "customer");
 
 function ProfileContainer() {
-  const { user: storedUser, logout } = useAuthStore();
+  const { logout } = useAuthStore();
 
   const router = useRouter();
 

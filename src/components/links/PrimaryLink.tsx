@@ -5,12 +5,12 @@ import UnstyledLink, {
 } from "@/components/links/UnstyledLink";
 import clsxm from "@/lib/clsxm";
 
-const primaryLinkSize = ["medium", "small"] as const;
-const primaryLinkVariant = ["blue", "secondary", "green", "red"] as const;
+type PrimaryLinkSize = "medium" | "small";
+type PrimaryLinkVariant = "blue" | "secondary" | "green" | "red";
 
 type primaryLinkProps = {
-  size?: (typeof primaryLinkSize)[number];
-  variant?: (typeof primaryLinkVariant)[number];
+  size?: PrimaryLinkSize;
+  variant?: PrimaryLinkVariant;
   underline?: boolean;
 } & UnstyledLinkProps;
 
@@ -59,5 +59,7 @@ const primaryLink = React.forwardRef<HTMLAnchorElement, primaryLinkProps>(
     );
   },
 );
+
+primaryLink.displayName = "PrimaryLink";
 
 export default primaryLink;

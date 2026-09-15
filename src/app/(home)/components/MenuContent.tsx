@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Minus, Plus } from "lucide-react";
+import Image from "next/image";
 import IconButton from "@/components/buttons/IconButton";
 import { useCart } from "@/context/CartContext";
 import Button from "@/components/buttons/Button";
@@ -39,9 +40,11 @@ const MenuContent = ({ item }: { item: Menu }) => {
 
   return (
     <div className="flex flex-col gap-4 bg-white rounded-xl shadow-sm overflow-hidden p-3">
-      <img
+      <Image
         src={item.image_url ?? "/images/placeholder.png"}
         alt={item.name}
+        width={400}
+        height={192}
         className="w-full h-48 object-cover rounded-xl"
       />
 

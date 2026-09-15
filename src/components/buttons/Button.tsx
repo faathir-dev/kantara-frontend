@@ -2,21 +2,20 @@ import * as React from "react";
 import { Loader2, LucideIcon } from "lucide-react";
 import clsxm from "@/lib/clsxm";
 
-const ButtonVariant = [
-  "blue",
-  "primary",
-  "green",
-  "yellow",
-  "red",
-  "outline",
-  "ghost",
-] as const;
-const ButtonSize = ["sm", "base", "lg"] as const;
+type ButtonVariant =
+  | "blue"
+  | "primary"
+  | "green"
+  | "yellow"
+  | "red"
+  | "outline"
+  | "ghost";
+type ButtonSize = "sm" | "base" | "lg";
 
 type ButtonProps = {
   isLoading?: boolean;
-  variant?: (typeof ButtonVariant)[number];
-  size?: (typeof ButtonSize)[number];
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   leftIcon?: LucideIcon;
   rightIcon?: LucideIcon;
   leftIconClassName?: string;
@@ -181,5 +180,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
   },
 );
+
+Button.displayName = "Button";
 
 export default Button;

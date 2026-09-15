@@ -1,5 +1,6 @@
 "use client";
 
+import { MouseEvent } from "react";
 import { useParams } from "next/navigation";
 import {
   Loader2,
@@ -29,8 +30,7 @@ export default function OrderDetailsContainer() {
   const orderDetails = orderData?.data?.orders;
   const orderStatus = orderData?.data?.order_status;
 
-  // @ts-ignore
-  const handleRefetch = (e) => {
+  const handleRefetch = (e: MouseEvent) => {
     e.stopPropagation();
     queryClient.invalidateQueries({ queryKey: ["order-status", orderId] });
   };

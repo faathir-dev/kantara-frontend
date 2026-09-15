@@ -1,6 +1,5 @@
 "use client";
 
-import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, ShoppingBasket } from "lucide-react";
@@ -21,7 +20,6 @@ import ChooseTableNumberModal from "../modal/ChooseTableNumberModal";
 export default withAuth(CheckoutContainer, "customer");
 
 function CheckoutContainer() {
-  const methods = useForm({ mode: "onChange" });
   const {
     items,
     updateQuantity,
@@ -101,6 +99,7 @@ function CheckoutContainer() {
       const token = res.data.token
       const trxId = res.data.transaction_id.toString()
       setOrderId(trxId)
+      setPaymentUrl(res.data.payment_link)
       setIsRedirecting(true)
 
       window.snap.pay(token, {
@@ -165,7 +164,6 @@ function CheckoutContainer() {
               {/* Pesanan */}
               <OrderList
                 orders={items}
-                methods={methods}
                 onIncrement={handleIncrement}
                 onDecrement={handleDecrement}
                 onDelete={handleDelete}

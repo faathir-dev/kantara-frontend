@@ -6,19 +6,18 @@ import UnstyledLink, {
 } from "@/components/links/UnstyledLink";
 import clsxm from "@/lib/clsxm";
 
-const IconLinkVariant = [
-  "blue",
-  "green",
-  "yellow",
-  "red",
-  "outline",
-  "ghost",
-] as const;
-const IconLinkSize = ["xs", "sm", "base", "lg"] as const;
+type IconLinkVariant =
+  | "blue"
+  | "green"
+  | "yellow"
+  | "red"
+  | "outline"
+  | "ghost";
+type IconLinkSize = "xs" | "sm" | "base" | "lg";
 
 type IconLinkProps = {
-  variant?: (typeof IconLinkVariant)[number];
-  size?: (typeof IconLinkSize)[number];
+  variant?: IconLinkVariant;
+  size?: IconLinkSize;
   icon?: LucideIcon;
   iconClassName?: string;
 } & Omit<UnstyledLinkProps, "children">;
@@ -117,5 +116,7 @@ const IconLink = React.forwardRef<HTMLAnchorElement, IconLinkProps>(
     );
   },
 );
+
+IconLink.displayName = "IconLink";
 
 export default IconLink;
